@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Novo Item')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/doacoes/listar}">Doações</a><span>›</span> Novo item</div>
+      <h1>Novo item da doação</h1>
+    </div>
+  </div>
+
+  <form class="form-card" th:action="@{/itens/salvar}" method="post">
+    <input type="hidden" name="doacaoId" th:value="${doacao.id}">
+
+    <div class="field">
+      <label>Nome do alimento</label>
+      <input name="nomeAlimento" placeholder="Ex: Feijão carioca" required>
+    </div>
+    <div class="field">
+      <label>Categoria</label>
+      <input name="categoria" placeholder="Perecível, Não perecível, Hortifruti…">
+    </div>
+    <div class="field">
+      <label>Unidade de medida</label>
+      <input name="unidadeMedida" placeholder="kg, un, L…">
+    </div>
+    <div class="field">
+      <label>Quantidade</label>
+      <input type="number" step="0.01" name="quantidade" placeholder="0.00" required>
+    </div>
+    <div class="field">
+      <label>Data de validade</label>
+      <input type="date" name="validade">
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Adicionar item</button>
+      <a class="btn btn-secondary" th:href="@{'/itens/'+${doacao.id}}">Cancelar</a>
+    </div>
+  </form>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

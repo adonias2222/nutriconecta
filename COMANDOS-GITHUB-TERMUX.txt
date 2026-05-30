@@ -1,0 +1,38 @@
+COMANDOS PARA SUBIR O NUTRICONECTA NO GITHUB PELO TERMUX
+
+1) Dar permissão para acessar os arquivos do celular:
+
+termux-setup-storage
+
+2) Instalar ferramentas:
+
+pkg update -y
+pkg install -y git unzip maven openjdk-21
+
+3) Extrair o ZIP que você recebeu.
+Se o ZIP estiver em Downloads:
+
+cd $HOME
+cp /sdcard/Download/nutriconecta-corrigido.zip $HOME/
+rm -rf nutriconecta
+unzip -o nutriconecta-corrigido.zip -d $HOME
+cd nutriconecta-corrigido
+
+4) Configurar seu Git:
+
+git config --global user.name "adonias2222"
+git config --global user.email "SEU_EMAIL_DO_GITHUB"
+
+5) Subir para o repositório:
+
+git init
+git add .
+git commit -m "feat: projeto NutriConecta corrigido"
+git branch -M main
+git remote remove origin 2>/dev/null
+git remote add origin https://github.com/adonias2222/nutriconecta.git
+git push -u origin main --force
+
+OBSERVAÇÃO:
+Use --force apenas se você quer substituir o conteúdo atual do repositório pelo projeto corrigido.
+Se não quiser substituir, use: git push -u origin main

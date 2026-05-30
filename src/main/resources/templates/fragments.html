@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${titulo} + ' — NutriConecta'">NutriConecta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+<nav th:fragment="menu" class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" th:href="@{/}">
+      <div class="brand-icon">🌿</div>
+      <span class="brand-text">NutriConecta</span>
+    </a>
+    <nav class="menu">
+      <a th:href="@{/}">Home</a>
+      <a th:href="@{/usuarios/listar}">Usuários</a>
+      <a th:href="@{/doacoes/listar}">Doações</a>
+      <a th:href="@{/alimentos/listar}">Alimentos</a>
+      <a th:href="@{/solicitacoes/listar}">Solicitações</a>
+      <a th:href="@{/retiradas/listar}">Retiradas</a>
+    </nav>
+  </div>
+</nav>
+
+<footer th:fragment="footer">
+  <strong>NutriConecta</strong> — Conectando quem doa a quem precisa &nbsp;·&nbsp;
+  ODS 2: Fome Zero e Agricultura Sustentável &nbsp;·&nbsp; © 2026
+</footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Registrar Retirada')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/retiradas/listar}">Retiradas</a><span>›</span> Registrar</div>
+      <h1>Registrar retirada</h1>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Doação:</strong> <span th:text="${solicitacao.doacao.titulo}"></span>
+    &nbsp;·&nbsp;
+    <strong>Instituição:</strong> <span th:text="${solicitacao.instituicao.nome}"></span>
+  </div>
+
+  <form class="form-card" th:action="@{/retiradas/salvar}" method="post">
+    <input type="hidden" name="solicitacaoId" th:value="${solicitacao.id}">
+
+    <div class="field">
+      <label>Responsável pela retirada</label>
+      <input name="responsavel" placeholder="Nome completo" required>
+    </div>
+    <div class="field">
+      <label>Data e hora da retirada</label>
+      <input type="datetime-local" name="dataRetirada" required>
+    </div>
+    <div class="field">
+      <label>Observações</label>
+      <textarea name="observacoes" placeholder="Informações adicionais…"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Confirmar retirada</button>
+      <a class="btn btn-secondary" th:href="@{/solicitacoes/listar}">Cancelar</a>
+    </div>
+  </form>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

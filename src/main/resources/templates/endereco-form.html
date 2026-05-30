@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Novo Endereço')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/usuarios/listar}">Usuários</a><span>›</span> Novo endereço</div>
+      <h1>Novo endereço</h1>
+    </div>
+  </div>
+
+  <form class="form-card" th:action="@{/enderecos/salvar}" th:object="${endereco}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{usuario.id}">
+
+    <div class="field">
+      <label>Logradouro</label>
+      <input th:field="*{logradouro}" placeholder="Rua, Av., Travessa…" required>
+    </div>
+    <div class="field">
+      <label>Número</label>
+      <input th:field="*{numero}" placeholder="123">
+    </div>
+    <div class="field">
+      <label>Bairro</label>
+      <input th:field="*{bairro}" placeholder="Nome do bairro">
+    </div>
+    <div class="field">
+      <label>Cidade</label>
+      <input th:field="*{cidade}" placeholder="Cidade">
+    </div>
+    <div class="field">
+      <label>Estado</label>
+      <input th:field="*{estado}" placeholder="SP" maxlength="2">
+    </div>
+    <div class="field">
+      <label>CEP</label>
+      <input th:field="*{cep}" placeholder="00000-000">
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Salvar</button>
+      <a class="btn btn-secondary" th:href="@{/usuarios/listar}">Cancelar</a>
+    </div>
+  </form>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

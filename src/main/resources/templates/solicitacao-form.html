@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Nova Solicitação')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/solicitacoes/listar}">Solicitações</a><span>›</span> Nova</div>
+      <h1>Nova solicitação</h1>
+    </div>
+  </div>
+
+  <form class="form-card" th:action="@{/solicitacoes/salvar}" method="post">
+    <div class="field">
+      <label>Doação disponível</label>
+      <select name="doacaoId" required>
+        <option value="">Selecione a doação…</option>
+        <option th:each="d : ${doacoes}" th:value="${d.id}" th:text="${d.titulo}"></option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Instituição solicitante</label>
+      <select name="instituicaoId" required>
+        <option value="">Selecione a instituição…</option>
+        <option th:each="i : ${instituicoes}" th:value="${i.id}" th:text="${i.nome}"></option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Solicitar</button>
+      <a class="btn btn-secondary" th:href="@{/solicitacoes/listar}">Cancelar</a>
+    </div>
+  </form>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

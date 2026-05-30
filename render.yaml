@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: nutriconecta
+    env: java
+    region: oregon
+    plan: free
+    buildCommand: "mvn clean package -DskipTests"
+    startCommand: "java -Dspring.profiles.active=render -jar target/nutriconecta-0.0.1-SNAPSHOT.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: 21
+      - key: DB_HOST
+        fromDatabase:
+          name: nutriconecta-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: nutriconecta-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: nutriconecta-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: nutriconecta-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: nutriconecta-db
+          property: password
+
+databases:
+  - name: nutriconecta-db
+    databaseName: nutriconecta
+    user: nutriconecta
+    plan: free

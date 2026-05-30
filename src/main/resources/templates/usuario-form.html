@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Usuário')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/usuarios/listar}">Usuários</a><span>›</span> Cadastro</div>
+      <h1>Cadastro de usuário</h1>
+    </div>
+  </div>
+
+  <form class="form-card" th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="field">
+      <label>Nome completo</label>
+      <input th:field="*{nome}" placeholder="Nome do usuário ou instituição" required>
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" th:field="*{email}" placeholder="email@exemplo.com" required>
+    </div>
+    <div class="field">
+      <label>Senha</label>
+      <input type="password" th:field="*{senha}" placeholder="••••••••" required>
+    </div>
+    <div class="field">
+      <label>Tipo de usuário</label>
+      <select th:field="*{tipo}" required>
+        <option value="">Selecione…</option>
+        <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}"></option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Telefone</label>
+      <input th:field="*{telefone}" placeholder="(11) 99999-9999">
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Salvar</button>
+      <a class="btn btn-secondary" th:href="@{/usuarios/listar}">Cancelar</a>
+    </div>
+  </form>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

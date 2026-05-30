@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Nova Doação')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/doacoes/listar}">Doações</a><span>›</span> Nova</div>
+      <h1>Nova doação</h1>
+    </div>
+  </div>
+
+  <form class="form-card" th:action="@{/doacoes/salvar}" th:object="${doacao}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="field">
+      <label>Título</label>
+      <input th:field="*{titulo}" placeholder="Ex: Cesta básica — Mercado São João" required>
+    </div>
+    <div class="field">
+      <label>Descrição</label>
+      <textarea th:field="*{descricao}" placeholder="Descreva os itens ou detalhes da doação…"></textarea>
+    </div>
+    <div class="field">
+      <label>Doador</label>
+      <select th:field="*{doador.id}" required>
+        <option value="">Selecione o doador…</option>
+        <option th:each="d : ${doadores}" th:value="${d.id}" th:text="${d.nome}"></option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Data de expiração</label>
+      <input type="date" th:field="*{dataExpiracao}">
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Salvar doação</button>
+      <a class="btn btn-secondary" th:href="@{/doacoes/listar}">Cancelar</a>
+    </div>
+  </form>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

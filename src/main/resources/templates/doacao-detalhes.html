@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Detalhes da Doação')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+<main class="container">
+
+  <div class="breadcrumb"><a th:href="@{/}">Home</a><span>›</span><a th:href="@{/doacoes/listar}">Doações</a><span>›</span> Detalhes</div>
+
+  <div class="detail-card">
+    <h1 th:text="${doacao.titulo}" style="margin-bottom:20px"></h1>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <label>Doador</label>
+        <p th:text="${doacao.doador.nome}"></p>
+      </div>
+      <div class="detail-item">
+        <label>Status</label>
+        <p><span class="badge" th:text="${doacao.status}"></span></p>
+      </div>
+      <div class="detail-item">
+        <label>Descrição</label>
+        <p th:text="${doacao.descricao}">—</p>
+      </div>
+    </div>
+    <div class="form-actions">
+      <a class="btn btn-outline" th:href="@{'/itens/'+${doacao.id}}">Ver itens</a>
+      <a class="btn btn-secondary" th:href="@{/doacoes/listar}">Voltar</a>
+    </div>
+  </div>
+
+  <h2 style="margin-bottom:16px">Itens da doação</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Alimento</th>
+          <th>Quantidade</th>
+          <th>Validade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="i : ${itens}">
+          <td><strong th:text="${i.alimento.nome}"></strong></td>
+          <td th:text="${i.quantidade + ' ' + i.alimento.unidadeMedida}"></td>
+          <td th:text="${i.validade}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

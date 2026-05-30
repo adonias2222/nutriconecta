@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Início')}"></head>
+<body>
+<div th:replace="~{fragments :: menu}"></div>
+
+<main class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Conectando doações a quem precisa</h1>
+      <p>Plataforma centralizada para doadores, instituições receptoras e controle completo de alimentos, solicitações e retiradas.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" th:href="@{/doacoes/listar}">Ver doações</a>
+        <a class="btn btn-secondary" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.35)" th:href="@{/usuarios/novo}">Cadastrar usuário</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-num" th:text="${totalDoacoes}">0</div>
+      <div class="stat-label">Doações registradas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" th:text="${totalInstituicoes}">0</div>
+      <div class="stat-label">Instituições parceiras</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" th:text="${totalRetiradas}">0</div>
+      <div class="stat-label">Retiradas concluídas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" th:text="${totalDistribuido}">0</div>
+      <div class="stat-label">Itens cadastrados</div>
+    </div>
+  </div>
+
+  <!-- Info cards -->
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>🤝 Doadores</h3>
+      <p>Mercados, restaurantes e pessoas físicas cadastram ofertas de alimentos disponíveis para doação.</p>
+    </div>
+    <div class="info-card">
+      <h3>🏠 Instituições</h3>
+      <p>ONGs, cozinhas comunitárias e projetos sociais solicitam as doações que estão disponíveis.</p>
+    </div>
+    <div class="info-card">
+      <h3>📋 Controle</h3>
+      <p>O sistema registra validade, quantidade, histórico completo e confirmação de retirada.</p>
+    </div>
+  </div>
+
+</main>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>
