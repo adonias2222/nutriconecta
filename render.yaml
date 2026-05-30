@@ -1,14 +1,10 @@
 services:
   - type: web
     name: nutriconecta
-    env: java
+    runtime: docker
     region: oregon
     plan: free
-    buildCommand: "mvn clean package -DskipTests"
-    startCommand: "java -Dspring.profiles.active=render -jar target/nutriconecta-0.0.1-SNAPSHOT.jar"
     envVars:
-      - key: JAVA_VERSION
-        value: 21
       - key: DB_HOST
         fromDatabase:
           name: nutriconecta-db
